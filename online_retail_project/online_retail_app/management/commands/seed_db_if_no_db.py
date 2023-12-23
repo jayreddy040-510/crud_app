@@ -3,22 +3,28 @@ from django.core.management.base import BaseCommand, CommandError
 from django.db.utils import IntegrityError
 from datetime import datetime
 from online_retail_app.models import Product, Customer, Invoice, InvoiceItem
+from django.conf import settings
+import os
 
 
 class Command(BaseCommand):
-    help = 'Load a CSV file into the database'
-
-    def add_arguments(self, parser):
-        parser.add_argument('csv_file', type=str, help='The CSV file to load')
+    help = 'Seeds the database from a CSV file'
 
     def handle(self, *args, **kwargs):
-        csv_file = kwargs['csv_file']
+        if InvoiceItem.objects.exists():
+            self.stdout.write(self.style.SUCCESS(
+                'Database is already seeded. No action taken.'))
+            return
+
+        # Constructing the path to the CSV file
+        csv_file = os.path.join(
+            settings.BASE_DIR, 'data', 'online_retail_data.csv')
 
         try:
             with open(csv_file, mode='r', encoding='utf-8-sig') as file:
                 reader = csv.DictReader(file)
         except FileNotFoundError:
-            raise CommandError('File does not exist')
+            raise CommandError('CSV file not found at {}'.format(csv_file))
         except Exception as e:
             raise CommandError(
                 f'An error occurred while reading the file: {e}')

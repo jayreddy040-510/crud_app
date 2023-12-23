@@ -1,6 +1,9 @@
 from django.apps import AppConfig
+from django.core.management import call_command
 
 
-class OnlineRetailAppConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
+class YourAppConfig(AppConfig):
     name = 'online_retail_app'
+
+    def ready(self):
+        call_command('seeddb', '--csv_file', 'path/to/default/csvfile.csv')
