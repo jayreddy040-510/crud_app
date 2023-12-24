@@ -6,6 +6,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 
+# uses DRF APITestCase for DRY reusable code
 class ProductListViewTests(APITestCase):
     def test_view_products(self):
         url = reverse('product-list')
