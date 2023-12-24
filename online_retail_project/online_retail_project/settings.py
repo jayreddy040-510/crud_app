@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'online_retail_app.apps.OnlineRetailAppConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -64,7 +65,7 @@ ROOT_URLCONF = 'online_retail_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

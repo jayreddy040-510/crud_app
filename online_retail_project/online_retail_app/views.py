@@ -3,13 +3,32 @@ from django.views.generic.list import ListView
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from .models import Product, Customer, Invoice, InvoiceItem
 from .forms import InvoiceForm, InvoiceItemForm
-from .serializers import ProductSerializer, CustomerSerializer, InvoiceItemSerializer
+from .serializers import ProductSerializer, CustomerSerializer, InvoiceItemSerializer, InvoiceSerializer
+from django.shortcuts import render
 
+# Function to handle the root URL
+
+
+def root_view(request):
+    # Render the 'root.html' template
+    return render(request, 'root.html')
 
 # List of Products (Using Serializer)
+
+
 class ProductListView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+
+class InvoiceListView(ListAPIView):
+    queryset = Invoice.objects.all()
+    serializer_class = InvoiceSerializer
+
+
+class InvoiceItemListView(ListAPIView):
+    queryset = InvoiceItem.objects.all()
+    serializer_class = InvoiceItemSerializer
 
 # Detail of a Customer (Using Serializer)
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Endpoints</title>
+</head>
+<body>
+    <h1>API Endpoints</h1>
+    <p>Below is a list of available API endpoints and their functions:</p>
+    <ul>
+        <li>
+            <a href="{% url 'product-list' %}">GET /products/</a> - List all products.
+        </li>
+        <li>
+            <a href="{% url 'invoice-list' %}">GET /invoices/</a> - List all invoices.
+        </li>
+        <li>
+            <a href="{% url 'invoice-item-list' %}">GET /invoice-items/</a> - List all invoice items.
+        </li>
+        <li>
+            <a href="{% url 'customer-detail' pk='123' %}">GET /customers/{pk}/</a> - Retrieve details of a customer (replace {pk} with actual customer ID).
+        </li>
+        <li>
+            <a href="{% url 'invoice-create' %}">POST /invoices/new/</a> - Create a new invoice.
+        </li>
+        <li>
+            <a href="{% url 'invoice-item-update' pk='123' %}">POST /invoice-items/{pk}/update/</a> - Update an existing invoice item (replace {pk} with actual invoice item ID).
+        </li>
+        <li>
+            <a href="{% url 'product-delete' pk='123' %}">POST /products/{pk}/delete/</a> - Delete a product (replace {pk} with actual product ID).
+        </li>
+        <li>
+            <a href="{% url 'invoice-item-list-by-invoice' invoice_id='123' %}">GET /invoice-items/invoice/{invoice_id}/</a> - List all invoice items for a specific invoice (replace {invoice_id} with actual invoice ID).
+        </li>
+        <li>
+            <a href="{% url 'invoice-items-by-invoice-no' invoice_no='INV123' %}">GET /invoice-items/invoice-no/{invoice_no}/</a> - List all items of an invoice by invoice number (replace {invoice_no} with actual invoice number).
+        </li>
+    </ul>
+</body>
+</html>
