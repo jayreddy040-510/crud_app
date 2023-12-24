@@ -1,3 +1,5 @@
+import os
+
 """
 Django settings for online_retail_project project.
 
@@ -38,13 +40,13 @@ TIME_ZONE = 'UTC'
 # Application definition
 
 INSTALLED_APPS = [
-    'online_retail_app.apps.OnlineRetailAppConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'online_retail_app.apps.OnlineRetailAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +64,7 @@ ROOT_URLCONF = 'online_retail_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

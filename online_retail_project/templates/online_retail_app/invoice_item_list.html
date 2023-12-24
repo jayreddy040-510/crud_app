@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Invoice Items</h2>
+  <ul>
+    {% for item in object_list %}
+      <li>{{ item.product.stock_code }}: {{ item.quantity }} units at {{ item.unit_price }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

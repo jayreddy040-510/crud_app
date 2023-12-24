@@ -2,6 +2,7 @@ import csv
 from django.core.management.base import BaseCommand, CommandError
 from django.db.utils import IntegrityError
 from datetime import datetime
+from django.utils import timezone
 from online_retail_app.models import Product, Customer, Invoice, InvoiceItem
 from django.conf import settings
 import os
@@ -38,8 +39,10 @@ class Command(BaseCommand):
                             continue  # Skip if product already exists
 
                         invoice_date_str = row['InvoiceDate']
-                        invoice_date = datetime.strptime(
+                        naive_invoice_date = datetime.strptime(
                             invoice_date_str, '%m/%d/%Y %H:%M')
+                        invoice_date = timezone.make_aware(
+                            naive_invoice_date, timezone.get_default_timezone())
 
                         invoice, created = Invoice.objects.get_or_create(
                             invoice_no=row['InvoiceNo'],
