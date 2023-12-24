@@ -47,7 +47,7 @@ class InvoiceCreateViewTests(TestCase):
         data = {
             'invoice_no': '123456',
             'customer': '1',  # Assuming a Customer with ID=1 exists
-            'invoice_date': timezone.now(),  # Use timezone.now() for a valid datetime
+            'invoice_date': timezone.now(),
             'country': 'United Kingdom',
         }
         response = self.client.post(url, data)

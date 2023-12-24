@@ -6,14 +6,10 @@ from .forms import InvoiceForm, InvoiceItemForm
 from .serializers import ProductSerializer, CustomerSerializer, InvoiceItemSerializer, InvoiceSerializer
 from django.shortcuts import render
 
-# Function to handle the root URL
-
 
 def root_view(request):
     # Render the 'root.html' template
     return render(request, 'root.html')
-
-# List of Products (Using Serializer)
 
 
 class ProductListView(ListAPIView):
@@ -30,29 +26,21 @@ class InvoiceItemListView(ListAPIView):
     queryset = InvoiceItem.objects.all()
     serializer_class = InvoiceItemSerializer
 
-# Detail of a Customer (Using Serializer)
-
 
 class CustomerDetailView(RetrieveAPIView):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
 
-# Create a New Invoice (Using Form)
-
 
 class InvoiceCreateView(CreateView):
     form_class = InvoiceForm
-    # Replace with your actual template
     template_name = 'online_retail_app/invoice_form.html'
     success_url = '/invoices/'  # Redirect after successful creation
-
-# Update an Invoice Item (Using Form)
 
 
 class InvoiceItemUpdateView(UpdateView):
     model = InvoiceItem
     form_class = InvoiceItemForm
-    # Replace with your actual template
     template_name = 'online_retail_app/invoice_item_form.html'
     success_url = '/invoice-items/'  # Redirect after successful update
 
@@ -69,21 +57,14 @@ class InvoiceItemsByInvoiceNoView(ListAPIView):
         return InvoiceItem.objects.filter(invoice__invoice_no=invoice_no)
 
 
-# Delete a Product (Using Form)
-
-
 class ProductDeleteView(DeleteView):
     model = Product
-    # Replace with your actual template
     template_name = 'online_retail_app/product_confirm_delete.html'
     success_url = '/products/'  # Redirect after successful deletion
-
-# List of Invoice Items for a Specific Invoice (Using Form)
 
 
 class InvoiceItemListByInvoiceView(ListView):
     model = InvoiceItem
-    # Replace with your actual template
     template_name = 'online_retail_app/invoice_item_list.html'
 
     def get_queryset(self):
