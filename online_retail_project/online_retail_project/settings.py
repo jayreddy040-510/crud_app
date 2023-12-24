@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+from django.utils import timezone
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,11 +28,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Use timezone-aware datetimes
+USE_TZ = True
+
+# Set your default timezone (e.g., 'UTC', 'America/New_York', etc.)
+TIME_ZONE = 'UTC'
+
 
 # Application definition
 
 INSTALLED_APPS = [
-    'online_retail_app',
+    'online_retail_app.apps.OnlineRetailAppConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
